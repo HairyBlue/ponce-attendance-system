@@ -1,4 +1,4 @@
-const basePath = "/IAS"
+const basePath = ""
 // script.js
 
 // Utility Functions
