@@ -327,7 +327,7 @@ function setupAdminEditStaffPage() {
   const staffId = getQueryParam("id");
   if (!staffId) {
     alert("Staff ID not found.");
-    window.location.href = "/IAS/admin_dashboard.html";
+    window.location.href = "/IAS/html/admin/admin_dashboard.html";
     return;
   }
   loadDepartments().then(() => {
@@ -340,7 +340,7 @@ function setupAdminEditUserPage() {
   const userId = getQueryParam("id");
   if (!userId) {
     alert("User ID not found.");
-    window.location.href = "/IAS/admin_dashboard.html";
+    window.location.href = "/IAS/html/admin/admin_dashboard.html";
     return;
   }
   loadDepartments().then(() => {
@@ -904,7 +904,7 @@ function toggleVisibility(id) {
 
 // Action Functions for Admin
 function editStaff(id) {
-  window.location.href = `admin_edit_staff.html?id=${id}`;
+  window.location.href = `/IAS/html/admin/admin_edit_staff.html?id=${id}`;
 }
 
 function removeStaff(id) {
@@ -920,7 +920,7 @@ function removeStaff(id) {
 }
 
 function editUser(id) {
-  window.location.href = `admin_edit_user.html?id=${id}`;
+  window.location.href = `/IAS/html/admin/admin_edit_user.html?id=${id}`;
 }
 
 function removeUser(id) {
@@ -982,7 +982,7 @@ function addStaff(event) {
     .then((response) => response.json())
     .then((result) => {
       alert(result.message);
-      window.location.href = "/IAS/admin_dashboard.html";
+      window.location.href = "/IAS/html/admin/admin_dashboard.html";
     })
     .catch((error) => {
       console.error("Error adding staff:", error);
@@ -1018,7 +1018,7 @@ function addUser(event) {
     .then(({ response, result }) => {
       if (response.ok) {
         alert(result.message);
-        window.location.href = "/IAS/admin_dashboard.html";
+        window.location.href = "/IAS/html/admin/admin_dashboard.html";
       } else {
         alert(`Error: ${result.message}`);
       }
@@ -1072,7 +1072,7 @@ function updateStaff(event, staffId) {
     .then((response) => response.json())
     .then((result) => {
       alert(result.message);
-      window.location.href = "/IAS/admin_dashboard.html";
+      window.location.href = "/IAS/html/admin/admin_dashboard.html";
     })
     .catch((error) => {
       console.error("Error updating staff:", error);
@@ -1123,7 +1123,7 @@ function updateUser(event, userId) {
     .then((response) => response.json())
     .then((result) => {
       alert(result.message);
-      window.location.href = "/IAS/admin_dashboard.html";
+      window.location.href = "/IAS/html/admin/admin_dashboard.html";
     })
     .catch((error) => {
       console.error("Error updating user:", error);
@@ -1189,7 +1189,7 @@ function deleteEvent(eventId) {
 
 // Edit Event (Admin)
 function editEvent(eventId) {
-  window.location.href = `admin_edit_event.html?id=${eventId}`;
+  window.location.href = `/IAS/html/admin/admin_edit_event.html?id=${eventId}`;
 }
 
 // Filter Events by Department (Admin)
