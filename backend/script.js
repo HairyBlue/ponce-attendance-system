@@ -76,16 +76,16 @@ function renderSidebar() {
         <h2 class="text-xl font-bold">Admin Dashboard</h2>
         <ul class="mt-8 space-y-4">
           <li>
-            <a href="/html/admin/admin_dashboard.html" class="hover:text-blue-300">Dashboard</a>
+            <a href="/IAS/html/admin/admin_dashboard.html" class="hover:text-blue-300">Dashboard</a>
           </li>
           <li>
-            <a href="/html/admin/admin_event.html" class="hover:text-blue-300">Manage Events</a>
+            <a href="/IAS/html/admin/admin_event.html" class="hover:text-blue-300">Manage Events</a>
           </li>
           <li>
-            <a href="/html/admin/admin_new_staff.html" class="hover:text-blue-300">Add New Staff</a>
+            <a href="/IAS/html/admin/admin_new_staff.html" class="hover:text-blue-300">Add New Staff</a>
           </li>
           <li>
-            <a href="/html/admin/admin_new_user.html" class="hover:text-blue-300">Add New User</a>
+            <a href="/IAS/html/admin/admin_new_user.html" class="hover:text-blue-300">Add New User</a>
           </li>
         </ul>
       </div>
@@ -99,9 +99,9 @@ function renderSidebar() {
       <div class="p-4">
         <h2 class="text-lg font-bold">Staff Dashboard</h2>
         <ul class="mt-4 space-y-3">
-          <li><a href="/html/staff/staff_dashboard.html" class="hover:text-blue-300">Dashboard</a></li>
-          <li><a href="/html/staff/staff_events.html" class="hover:text-blue-300">Events</a></li>
-          <li><a href="/html/staff/staff_attendance.html" class="hover:text-blue-300">Attendance</a></li>
+          <li><a href="/IAS/html/staff/staff_dashboard.html" class="hover:text-blue-300">Dashboard</a></li>
+          <li><a href="/IAS/html/staff/staff_events.html" class="hover:text-blue-300">Events</a></li>
+          <li><a href="/IAS/html/staff/staff_attendance.html" class="hover:text-blue-300">Attendance</a></li>
         </ul>
       </div>
       <div class="p-4">
@@ -115,10 +115,10 @@ function renderSidebar() {
         <h2 class="text-2xl font-bold">User Menu</h2>
         <ul class="mt-12 space-y-8">
           <li>
-            <a href="/html/user/user_events.html" class="hover:text-green-300 text-xl">Events</a>
+            <a href="/IAS/html/user/user_events.html" class="hover:text-green-300 text-xl">Events</a>
           </li>
           <li>
-            <a href="/html/user/user_attendance.html" class="hover:text-green-300 text-xl">Attendance</a>
+            <a href="/IAS/html/user/user_attendance.html" class="hover:text-green-300 text-xl">Attendance</a>
           </li>
         </ul>
       </div>
@@ -1243,7 +1243,7 @@ function renderEvents(events) {
         <td class="p-4">${event.id}</td>
         <td class="p-4">${event.department_name}</td>
         <td class="p-4">
-          <a href="/event_name.html?event_id=${encodeURIComponent(
+          <a href="/IAS/event_name.html?event_id=${encodeURIComponent(
             event.id
           )}" class="text-blue-500 hover:underline">${event.name}</a>
         </td>
@@ -1253,7 +1253,7 @@ function renderEvents(events) {
       rowContent = `
       <td class="p-4">${event.id}</td>
       <td class="p-4">
-        <a href="/event_name.html?event_id=${encodeURIComponent(
+        <a href="/IAS/event_name.html?event_id=${encodeURIComponent(
           event.id
         )}" class="text-blue-500 hover:underline">${event.name}</a>
       </td>
