@@ -62,13 +62,13 @@ const login = async (req, res) => {
     // Determine the user type based on email domain
     if (email.endsWith("@admin.com")) {
       tableName = "admin";
-      redirectUrl = "/html/admin/admin_dashboard.html";
+      redirectUrl = "IAS/html/admin/admin_dashboard.html";
     } else if (email.endsWith("@staff.com")) {
       tableName = "staff";
-      redirectUrl = "/html/staff/staff_dashboard.html";
+      redirectUrl = "IAS/html/staff/staff_dashboard.html";
     } else if (email.endsWith("@user.com")) {
       tableName = "users";
-      redirectUrl = "/html/user/user_events.html";
+      redirectUrl = "IAS/html/user/user_events.html";
     } else {
       return res.status(400).json({ message: "Invalid email domain" });
     }
