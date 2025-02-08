@@ -1,3 +1,4 @@
+const basePath = "/IAS"
 // script.js
 
 // Utility Functions
@@ -143,7 +144,7 @@ function renderSidebar() {
 }
 
 function fetchEventDetails(eventId) {
-  fetch(`/events/${eventId}`)
+  fetch(`${basePath}/events/${eventId}`)
     .then(response => response.json())
     .then(data => {
       if (data && data.name) {
@@ -264,14 +265,14 @@ function initializePageBasedOnPath() {
   if (currentPath.includes("user_attendance")) {
     setupUserAttendancePage();
   } else if (currentPath.includes("staff_dashboard")) {
-    fetchEvents(`/staff/events?staff_id=${sessionStorage.getItem("staffId")}`);
+    fetchEvents(`${basePath}/staff/events?staff_id=${sessionStorage.getItem("staffId")}`);
   } else if (currentPath.includes("staff_attendance")) {
     setupAttendancePage();
   } else if (currentPath.includes("staff_events")) {
     setupEventCreation();
-    fetchEvents(`/staff/events?staff_id=${sessionStorage.getItem("staffId")}`);
+    fetchEvents(`${basePath}/staff/events?staff_id=${sessionStorage.getItem("staffId")}`);
   } else if (currentPath.includes("user_events")) {
-    fetchEvents(`/user/events?user_id=${sessionStorage.getItem("userId")}`);
+    fetchEvents(`${basePath}/user/events?user_id=${sessionStorage.getItem("userId")}`);
   } else if (currentPath.includes("event_name") && eventId) {
     fetchAndDisplayStudentIds(eventId);
     setupStudentInput(eventId);
@@ -394,7 +395,7 @@ function setupEventCreation() {
     const deadline = `${date} ${time}:00`; 
     
     try {
-      const response = await fetch("/staff/events", {
+      const response = await fetch(`${basePath}/staff/events`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -538,7 +539,7 @@ async function fetchEvents(endpoint) {
 
 // Fetch Events for Admin
 function loadEvents() {
-  fetch("/admin/events")
+  fetch(`${basePath}/admin/events`)
     .then((response) => response.json())
     .then((events) => {
       renderEvents(events);
@@ -551,7 +552,7 @@ function loadEvents() {
 // Fetch Attendance Records and Render Them
 async function fetchAttendance(eventId) {
   try {
-    const response = await fetch(`/staff/attendance/${eventId}`);
+    const response = await fetch(`${basePath}/staff/attendance/${eventId}`);
     const data = await response.json();
 
     if (!response.ok) {
@@ -577,7 +578,7 @@ async function fetchStudentAttendanceByName(studentName) {
   try {
     // Use encodeURIComponent to safely include names with spaces/special characters in the URL
     const response = await fetch(
-      `/attendance/student/name/${encodeURIComponent(studentName)}?department_id=${departmentId}`
+      `${basePath}/attendance/student/name/${encodeURIComponent(studentName)}?department_id=${departmentId}`
     );
 
     const data = await response.json();
@@ -609,7 +610,7 @@ async function fetchStudentAttendance(studentId) {
 
   try {
     const response = await fetch(
-      `/attendance/student/${studentId}?department_id=${departmentId}`
+      `${basePath}/attendance/student/${studentId}?department_id=${departmentId}`
     );
 
     const data = await response.json();
@@ -632,7 +633,7 @@ async function fetchStudentAttendance(studentId) {
 // Add Student to Attendance
 async function addStudentToAttendance(studentId, eventId) {
   try {
-    const response = await fetch("/attendance", {
+    const response = await fetch(`${basePath}/attendance`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ student_id: studentId, event_id: eventId }),
@@ -653,7 +654,7 @@ async function addStudentToAttendance(studentId, eventId) {
 // Fetch and Display Student IDs for Event
 async function fetchAndDisplayStudentIds(eventId) {
   try {
-    const response = await fetch(`/attendance/${eventId}`);
+    const response = await fetch(`${basePath}/attendance/${eventId}`);
     const students = await response.json();
 
     if (response.ok) {
@@ -703,7 +704,7 @@ function sendDataToServer(records) {
 
   console.log("Sending Payload:", payload);
 
-  fetch("/attendance", {
+  fetch(`${basePath}/attendance`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -729,7 +730,7 @@ function sendDataToServer(records) {
 
 // Load and Render Staff Data
 function loadStaffData() {
-  fetch("/admin/staff")
+  fetch(`${basePath}/admin/staff`)
     .then((response) => response.json())
     .then((staff) => {
       renderStaffData(staff);
@@ -808,7 +809,7 @@ function renderStaffData(staff) {
 
 // Load and Render User Data
 function loadUserData() {
-  fetch("/admin/users")
+  fetch(`${basePath}/admin/users`)
     .then((response) => response.json())
     .then((users) => {
       renderUserData(users);
@@ -908,7 +909,7 @@ function editStaff(id) {
 
 function removeStaff(id) {
   if (confirm("Are you sure you want to remove this staff member?")) {
-    fetch(`/admin/staff/${id}`, { method: "DELETE" })
+    fetch(`${basePath}/admin/staff/${id}`, { method: "DELETE" })
       .then((response) => response.json())
       .then((result) => {
         alert(result.message);
@@ -924,7 +925,7 @@ function editUser(id) {
 
 function removeUser(id) {
   if (confirm("Are you sure you want to remove this user?")) {
-    fetch(`/admin/users/${id}`, { method: "DELETE" })
+    fetch(`${basePath}/admin/users/${id}`, { method: "DELETE" })
       .then((response) => response.json())
       .then((result) => {
         alert(result.message);
@@ -936,7 +937,7 @@ function removeUser(id) {
 
 // Load Departments for Dropdowns
 function loadDepartments() {
-  return fetch("/departments")
+  return fetch(`${basePath}/departments`)
     .then((response) => response.json())
     .then((departments) => {
       const departmentSelects = document.querySelectorAll(
@@ -971,7 +972,7 @@ function addStaff(event) {
     return;
   }
 
-  fetch("/admin/staff", {
+  fetch(`${basePath}/admin/staff`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1002,7 +1003,7 @@ function addUser(event) {
     return;
   }
 
-  fetch("/admin/users", {
+  fetch(`${basePath}/admin/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1029,7 +1030,7 @@ function addUser(event) {
 
 // Fetch and Populate Staff Details for Editing
 function fetchStaffDetails(staffId) {
-  fetch(`/admin/staff/${staffId}`)
+  fetch(`${basePath}/admin/staff/${staffId}`)
     .then((response) => response.json())
     .then((staff) => {
       document.getElementById("name").value = staff.name;
@@ -1061,7 +1062,7 @@ function updateStaff(event, staffId) {
     payload.password = password;
   }
 
-  fetch(`/admin/staff/${staffId}`, {
+  fetch(`${basePath}/admin/staff/${staffId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -1080,7 +1081,7 @@ function updateStaff(event, staffId) {
 
 // Fetch and Populate User Details for Editing
 function fetchUserDetails(userId) {
-  fetch(`/admin/users/${userId}`)
+  fetch(`${basePath}/admin/users/${userId}`)
     .then((response) => response.json())
     .then((user) => {
       document.getElementById("name").value = user.name;
@@ -1112,7 +1113,7 @@ function updateUser(event, userId) {
     payload.password = password;
   }
 
-  fetch(`/admin/users/${userId}`, {
+  fetch(`${basePath}/admin/users/${userId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -1141,7 +1142,7 @@ function addEvent(event) {
     return;
   }
 
-  fetch("/admin/events", {
+  fetch(`${basePath}/admin/events`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1173,7 +1174,7 @@ function deleteEvent(eventId) {
     return;
   }
 
-  fetch(`/admin/events/${eventId}`, {
+  fetch(`${basePath}/admin/events/${eventId}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -1195,7 +1196,7 @@ function editEvent(eventId) {
 function filterEvents() {
   const departmentId = document.getElementById("filter-department").value;
 
-  fetch("/admin/events")
+  fetch(`${basePath}/admin/events`)
     .then((response) => response.json())
     .then((events) => {
       if (departmentId) {
