@@ -29,15 +29,8 @@ function exitf(){
 
 
 function startServices() {
+   cd ./backend
    pm2 start index.js --interpreter=$PM2_INTERPRETER --name $PM2_NAME || exitf "There a problem starting the pm2 service for $PM2_NAME" 
-   pm2 save
-   pm2 save --force
-}
-
-function stopingServices() {
-   echo "Stopping service name - $PM2_NAME" || exitf "There a problem stopping the pm2 service for $PM2_NAME" 
-
-   pm2 stop $PM2_NAME
    pm2 save
    pm2 save --force
 }
@@ -47,16 +40,6 @@ function start() {
    node index.js || exitf "unable to start server on node"
 }
 
-function pm2() {
-   if [ "$1" == "--start" ]; then
-      startServices
-   elif [ "$1" == "--stop" ]; then
-      stopingServices
-   else 
-      print_info "pm2 usage: --start or --stop"
-   fi
-}
-
 function db_migrate() {
    mysql --defaults-extra-file=$CNF_PATH < $migrate_path || exitf "Failed to migrate database $migrate_path, probably wrong credentials"
 }
@@ -64,7 +47,7 @@ function db_migrate() {
 if [ "$name" == "start" ]; then
    start
 elif [ "$name" == "pm2" ]; then
-   pm2 $2
+   startServices
 elif [ "$name" == "db-migrate" ]; then
    db_migrate
 fi
