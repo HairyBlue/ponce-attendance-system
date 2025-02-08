@@ -1055,12 +1055,12 @@ function updateStaff(event, staffId) {
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const department_id = document.getElementById("department_id").value;
-  const password = document.getElementById("password").value;
+  // const password = document.getElementById("password").value;
 
   const payload = { name, email, department_id };
-  if (password) {
-    payload.password = password;
-  }
+  // if (password) {
+  //   payload.password = password;
+  // }
 
   fetch(`${basePath}/admin/staff/${staffId}`, {
     method: "PUT",
@@ -1106,12 +1106,12 @@ function updateUser(event, userId) {
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const department_id = document.getElementById("department_id").value;
-  const password = document.getElementById("password").value;
+  // const password = document.getElementById("password").value;
 
   const payload = { name, email, department_id };
-  if (password) {
-    payload.password = password;
-  }
+  // if (password) {
+  //   payload.password = password;
+  // }
 
   fetch(`${basePath}/admin/users/${userId}`, {
     method: "PUT",
