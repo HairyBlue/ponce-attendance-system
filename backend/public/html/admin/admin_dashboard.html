@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <aside
+      id="sidebar"
+      class="w-64 bg-blue-900 text-white p-4 flex flex-col justify-between"
+    >
+      <!-- Sidebar content will be rendered here by script.js -->
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <div class="bg-white shadow-lg rounded-lg p-8">
+        <header>
+          <h1 class="text-3xl font-bold">Admin Dashboard</h1>
+          <p class="mt-2 text-gray-600">
+            Manage staff, users, and events efficiently.
+          </p>
+        </header>
+
+        <section class="mt-8">
+          <h2 class="text-2xl font-semibold border-b pb-2">
+            Staff Members by Department
+          </h2>
+          <div id="staff-section" class="mt-4">
+            <!-- Staff data will be loaded here by script.js -->
+          </div>
+        </section>
+
+        <section class="mt-8">
+          <h2 class="text-2xl font-semibold border-b pb-2">
+            Users by Department
+          </h2>
+          <div id="users-section" class="mt-4">
+            <!-- Users data will be loaded here by script.js -->
+          </div>
+        </section>
+
+        <section class="mt-10 flex space-x-4">
+          <a
+            href="admin_new_staff.html"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow"
+          >
+            Add New Staff
+          </a>
+          <a
+            href="admin_new_user.html"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow"
+          >
+            Add New User
+          </a>
+        </section>
+      </div>
+    </main>
+
+    <script src="/script.js" defer></script>
+  </body>
+</html>

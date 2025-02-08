@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Manage Events</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <aside
+      id="sidebar"
+      class="w-64 bg-blue-900 text-white p-4 flex flex-col justify-between"
+    >
+      <!-- Sidebar content will be rendered here by script.js -->
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <div class="bg-white shadow-lg rounded-lg p-8">
+        <header>
+          <h1 class="text-3xl font-bold">Manage Events</h1>
+          <p class="mt-2 text-gray-600">
+            Below is the list of all registered events.
+          </p>
+        </header>
+
+        <!-- Event Creation Form -->
+        <section class="mt-8">
+          <form id="event-form" class="space-y-4">
+            <div>
+              <label for="event-name" class="block text-gray-700 font-medium">Event Name</label>
+              <input
+                type="text"
+                id="event-name"
+                class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+              />
+            </div>
+            <div>
+              <label for="event-date" class="block text-gray-700 font-medium">Event Date</label>
+              <input
+                type="date"
+                id="event-date"
+                class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+              />
+            </div>
+            <div>
+              <label for="department_id" class="block text-gray-700 font-medium">Department</label>
+              <select
+                id="department_id"
+                class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+              >
+                <!-- Department options will be loaded dynamically -->
+              </select>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow"
+            >
+              Add Event
+            </button>
+          </form>
+        </section>
+
+        <!-- Filter by Department -->
+        <section class="mt-8">
+          <label for="filter-department" class="block text-gray-700 font-medium">Filter by Department</label>
+          <select
+            id="filter-department"
+            class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            <option value="">All Departments</option>
+            <!-- Department options will be loaded dynamically -->
+          </select>
+        </section>
+
+        <!-- Events Table -->
+        <section class="mt-8">
+          <div class="overflow-x-auto">
+            <table id="events-table" class="min-w-full border divide-y divide-gray-200">
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="border px-4 py-2 text-left">Event ID</th>
+                  <th class="border px-4 py-2 text-left">Department</th>
+                  <th class="border px-4 py-2 text-left">Event Name</th>
+                  <th class="border px-4 py-2 text-left">Date</th>
+                  <th class="border px-4 py-2 text-left">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <!-- Event rows will be dynamically loaded -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="/script.js" defer></script>
+  </body>
+</html>
